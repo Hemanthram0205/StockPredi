@@ -2,7 +2,7 @@ import streamlit as st
 import yfinance as yf
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="Indian Stock Predictor", page_icon="📈", layout="wide")
+st.set_page_config(page_title="Stock Market AI", page_icon="📈", layout="wide")
 
 # Indian theme CSS
 st.markdown("""
@@ -17,8 +17,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown('<p class="big-font">🇮🇳 Indian Stock Predictor</p>', unsafe_allow_html=True)
-st.markdown("### NSE/BSE Stock Analysis & Prediction")
+st.markdown('<p class="big-font">📈 Stock Market AI Pro</p>', unsafe_allow_html=True)
+st.markdown("### Advanced NSE/BSE Stock Analysis & Prediction Platform")
 
 # Popular Indian Stocks
 STOCKS = {
@@ -71,8 +71,8 @@ with st.sidebar:
     analyze_btn = st.button("🔮 ANALYZE & PREDICT", type="primary", use_container_width=True)
     
     st.divider()
-    st.markdown("### 📚 University Project")
-    st.caption("Indian Stock Market Predictor")
+    st.markdown("### 🤖 AI-Powered Analysis")
+    st.caption("Real-time market insights")
 
 # Main content
 if analyze_btn:
@@ -360,11 +360,11 @@ else:
 st.divider()
 st.markdown("""
     <div style='text-align: center; padding: 1rem; background: #f0f2f6; border-radius: 10px;'>
-        <p style='margin: 0;'><b>🎓 University Project</b></p>
-        <p style='margin: 0;'>Indian Stock Market Prediction System</p>
-        <p style='margin: 0; font-size: 0.9em;'>Made with ❤️ using Streamlit & yfinance</p>
+        <p style='margin: 0;'><b>📈 Stock Market AI Pro</b></p>
+        <p style='margin: 0;'>Advanced Indian Stock Market Analysis Platform</p>
+        <p style='margin: 0; font-size: 0.9em;'>Powered by AI & Real-time Data</p>
         <p style='margin: 0; font-size: 0.8em; color: #666;'>
-            ⚠️ For Educational Purposes Only | Not Financial Advice
+            ⚠️ For Informational Purposes Only | Not Financial Advice
         </p>
     </div>
     """, unsafe_allow_html=True)
