@@ -3,7 +3,7 @@ import yfinance as yf
 from datetime import datetime, timedelta
 import time
 
-st.set_page_config(page_title="Stock Market AI", page_icon="📈", layout="wide")
+st.set_page_config(page_title="MarketSense AI", page_icon="📈", layout="wide")
 
 # Indian theme CSS
 st.markdown("""
@@ -31,7 +31,7 @@ def get_stock_data(symbol, period):
     except Exception as e:
         return None, None, str(e)
 
-st.markdown('<p class="big-font">📈 Stock Market AI Pro</p>', unsafe_allow_html=True)
+st.markdown('<p class="big-font">📈 MarketSense AI</p>', unsafe_allow_html=True)
 st.markdown("### Advanced NSE/BSE Stock Analysis & Prediction Platform")
 
 # Popular Indian Stocks
@@ -370,7 +370,7 @@ else:
 st.divider()
 st.markdown("""
     <div style='text-align: center; padding: 1rem; background: #f0f2f6; border-radius: 10px;'>
-        <p style='margin: 0;'><b>📈 Stock Market AI Pro</b></p>
+        <p style='margin: 0;'><b>📈 MarketSense AI</b></p>
         <p style='margin: 0;'>Advanced Indian Stock Market Analysis Platform</p>
         <p style='margin: 0; font-size: 0.9em;'>Powered by AI & Real-time Data</p>
         <p style='margin: 0; font-size: 0.8em; color: #666;'>
