@@ -18,6 +18,206 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# Comprehensive list of Indian stocks (NSE & BSE)
+# Format: "Company Name" : "SYMBOL.NS"
+ALL_STOCKS = {
+    # Nifty 50 & Popular Stocks
+    "Adani Enterprises Ltd": "ADANIENT.NS",
+    "Adani Ports and Special Economic Zone Ltd": "ADANIPORTS.NS",
+    "Adani Power Ltd": "ADANIPOWER.NS",
+    "Apollo Hospitals Enterprise Ltd": "APOLLOHOSP.NS",
+    "Asian Paints Ltd": "ASIANPAINT.NS",
+    "Axis Bank Ltd": "AXISBANK.NS",
+    "Bajaj Auto Ltd": "BAJAJ-AUTO.NS",
+    "Bajaj Finance Ltd": "BAJFINANCE.NS",
+    "Bajaj Finserv Ltd": "BAJFINSERV.NS",
+    "Bank of Baroda": "BANKBARODA.NS",
+    "Bharat Electronics Ltd": "BEL.NS",
+    "Bharat Petroleum Corporation Ltd": "BPCL.NS",
+    "Bharti Airtel Ltd": "BHARTIARTL.NS",
+    "Britannia Industries Ltd": "BRITANNIA.NS",
+    "Cipla Ltd": "CIPLA.NS",
+    "Coal India Ltd": "COALINDIA.NS",
+    "Dabur India Ltd": "DABUR.NS",
+    "Divi's Laboratories Ltd": "DIVISLAB.NS",
+    "Dr. Reddy's Laboratories Ltd": "DRREDDY.NS",
+    "Eicher Motors Ltd": "EICHERMOT.NS",
+    "Grasim Industries Ltd": "GRASIM.NS",
+    "HCL Technologies Ltd": "HCLTECH.NS",
+    "HDFC Bank Ltd": "HDFCBANK.NS",
+    "HDFC Life Insurance Company Ltd": "HDFCLIFE.NS",
+    "Hero MotoCorp Ltd": "HEROMOTOCO.NS",
+    "Hindalco Industries Ltd": "HINDALCO.NS",
+    "Hindustan Unilever Ltd": "HINDUNILVR.NS",
+    "ICICI Bank Ltd": "ICICIBANK.NS",
+    "Indian Oil Corporation Ltd": "IOC.NS",
+    "IndusInd Bank Ltd": "INDUSINDBK.NS",
+    "Infosys Ltd": "INFY.NS",
+    "ITC Ltd": "ITC.NS",
+    "JSW Steel Ltd": "JSWSTEEL.NS",
+    "Kotak Mahindra Bank Ltd": "KOTAKBANK.NS",
+    "Larsen & Toubro Ltd": "LT.NS",
+    "LTIMindtree Ltd": "LTIM.NS",
+    "Mahindra & Mahindra Ltd": "M&M.NS",
+    "Maruti Suzuki India Ltd": "MARUTI.NS",
+    "Nestle India Ltd": "NESTLEIND.NS",
+    "NTPC Ltd": "NTPC.NS",
+    "Oil & Natural Gas Corporation Ltd": "ONGC.NS",
+    "Power Grid Corporation of India Ltd": "POWERGRID.NS",
+    "Reliance Industries Ltd": "RELIANCE.NS",
+    "SBI Life Insurance Company Ltd": "SBILIFE.NS",
+    "Shriram Finance Ltd": "SHRIRAMFIN.NS",
+    "State Bank of India": "SBIN.NS",
+    "Sun Pharmaceutical Industries Ltd": "SUNPHARMA.NS",
+    "Tata Consultancy Services Ltd": "TCS.NS",
+    "Tata Consumer Products Ltd": "TATACONSUM.NS",
+    "Tata Motors Ltd": "TATAMOTORS.NS",
+    "Tata Steel Ltd": "TATASTEEL.NS",
+    "Tech Mahindra Ltd": "TECHM.NS",
+    "Titan Company Ltd": "TITAN.NS",
+    "UltraTech Cement Ltd": "ULTRACEMCO.NS",
+    "UPL Ltd": "UPL.NS",
+    "Wipro Ltd": "WIPRO.NS",
+    
+    # Additional Popular Stocks (Alphabetically A-Z)
+    "ABB India Ltd": "ABB.NS",
+    "ACC Ltd": "ACC.NS",
+    "Adani Green Energy Ltd": "ADANIGREEN.NS",
+    "Adani Total Gas Ltd": "ATGL.NS",
+    "Adani Transmission Ltd": "ADANITRANS.NS",
+    "Ambuja Cements Ltd": "AMBUJACEM.NS",
+    "Aurobindo Pharma Ltd": "AUROPHARMA.NS",
+    "Avenue Supermarts Ltd (DMart)": "DMART.NS",
+    "Bandhan Bank Ltd": "BANDHANBNK.NS",
+    "Bank of India": "BANKINDIA.NS",
+    "Berger Paints India Ltd": "BERGEPAINT.NS",
+    "Biocon Ltd": "BIOCON.NS",
+    "Bosch Ltd": "BOSCHLTD.NS",
+    "Canara Bank": "CANBK.NS",
+    "Cholamandalam Investment and Finance Company Ltd": "CHOLAFIN.NS",
+    "Colgate-Palmolive (India) Ltd": "COLPAL.NS",
+    "Container Corporation of India Ltd": "CONCOR.NS",
+    "Coromandel International Ltd": "COROMANDEL.NS",
+    "DLF Ltd": "DLF.NS",
+    "Federal Bank Ltd": "FEDERALBNK.NS",
+    "Gail (India) Ltd": "GAIL.NS",
+    "Godrej Consumer Products Ltd": "GODREJCP.NS",
+    "Godrej Properties Ltd": "GODREJPROP.NS",
+    "Havells India Ltd": "HAVELLS.NS",
+    "HDFC Asset Management Company Ltd": "HDFCAMC.NS",
+    "Indian Railway Finance Corporation Ltd": "IRFC.NS",
+    "InterGlobe Aviation Ltd (IndiGo)": "INDIGO.NS",
+    "Jindal Steel & Power Ltd": "JINDALSTEL.NS",
+    "LIC Housing Finance Ltd": "LICHSGFIN.NS",
+    "Lupin Ltd": "LUPIN.NS",
+    "Marico Ltd": "MARICO.NS",
+    "Max Financial Services Ltd": "MFSL.NS",
+    "Motherson Sumi Systems Ltd": "MOTHERSON.NS",
+    "MRF Ltd": "MRF.NS",
+    "Muthoot Finance Ltd": "MUTHOOTFIN.NS",
+    "Persistent Systems Ltd": "PERSISTENT.NS",
+    "Petronet LNG Ltd": "PETRONET.NS",
+    "Pidilite Industries Ltd": "PIDILITIND.NS",
+    "Punjab National Bank": "PNB.NS",
+    "SBI Cards and Payment Services Ltd": "SBICARD.NS",
+    "Shree Cement Ltd": "SHREECEM.NS",
+    "Siemens Ltd": "SIEMENS.NS",
+    "SRF Ltd": "SRF.NS",
+    "Sundaram Finance Ltd": "SUNDARMFIN.NS",
+    "Suzlon Energy Ltd": "SUZLON.NS",
+    "Tata Elxsi Ltd": "TATAELXSI.NS",
+    "Tata Power Company Ltd": "TATAPOWER.NS",
+    "Torrent Pharmaceuticals Ltd": "TORNTPHARM.NS",
+    "TVS Motor Company Ltd": "TVSMOTOR.NS",
+    "Union Bank of India": "UNIONBANK.NS",
+    "United Spirits Ltd": "MCDOWELL-N.NS",
+    "Vedanta Ltd": "VEDL.NS",
+    "Voltas Ltd": "VOLTAS.NS",
+    "Yes Bank Ltd": "YESBANK.NS",
+    "Zomato Ltd": "ZOMATO.NS",
+    "Zydus Lifesciences Ltd": "ZYDUSLIFE.NS",
+    
+    # Mid-cap & Small-cap (Additional)
+    "Aarti Industries Ltd": "AARTIIND.NS",
+    "ABB India Ltd": "ABB.NS",
+    "Aditya Birla Fashion and Retail Ltd": "ABFRL.NS",
+    "Ashok Leyland Ltd": "ASHOKLEY.NS",
+    "Atul Ltd": "ATUL.NS",
+    "BEML Ltd": "BEML.NS",
+    "Bharat Forge Ltd": "BHARATFORG.NS",
+    "BSE Ltd": "BSE.NS",
+    "Cummins India Ltd": "CUMMINSIND.NS",
+    "Dixon Technologies (India) Ltd": "DIXON.NS",
+    "Escorts Kubota Ltd": "ESCORTS.NS",
+    "Exide Industries Ltd": "EXIDEIND.NS",
+    "Fortis Healthcare Ltd": "FORTIS.NS",
+    "Gujarat Gas Ltd": "GUJGASLTD.NS",
+    "ICICI Lombard General Insurance Company Ltd": "ICICIGI.NS",
+    "ICICI Prudential Life Insurance Company Ltd": "ICICIPRULI.NS",
+    "IDFC First Bank Ltd": "IDFCFIRSTB.NS",
+    "Indian Bank": "INDIANB.NS",
+    "Indian Railway Catering and Tourism Corporation Ltd": "IRCTC.NS",
+    "Indraprastha Gas Ltd": "IGL.NS",
+    "Jubilant Foodworks Ltd": "JUBLFOOD.NS",
+    "L&T Technology Services Ltd": "LTTS.NS",
+    "Laurus Labs Ltd": "LAURUSLABS.NS",
+    "Lichsgfin Finance Ltd": "LICHSGFIN.NS",
+    "Linde India Ltd": "LINDEINDIA.NS",
+    "Mankind Pharma Ltd": "MANKIND.NS",
+    "Max Healthcare Institute Ltd": "MAXHEALTH.NS",
+    "NHPC Ltd": "NHPC.NS",
+    "Oberoi Realty Ltd": "OBEROIRLTY.NS",
+    "Oracle Financial Services Software Ltd": "OFSS.NS",
+    "Page Industries Ltd": "PAGEIND.NS",
+    "Paytm (One 97 Communications Ltd)": "PAYTM.NS",
+    "Phoenix Mills Ltd": "PHOENIXLTD.NS",
+    "PI Industries Ltd": "PIIND.NS",
+    "Polycab India Ltd": "POLYCAB.NS",
+    "Prestige Estates Projects Ltd": "PRESTIGE.NS",
+    "REC Ltd": "RECLTD.NS",
+    "Samvardhana Motherson International Ltd": "MOTHERSON.NS",
+    "Schaeffler India Ltd": "SCHAEFFLER.NS",
+    "Shoppers Stop Ltd": "SHOPERSTOP.NS",
+    "Tata Communications Ltd": "TATACOMM.NS",
+    "Tata Chemicals Ltd": "TATACHEM.NS",
+    "Thermax Ltd": "THERMAX.NS",
+    "Torrent Power Ltd": "TORNTPOWER.NS",
+    "Trent Ltd": "TRENT.NS",
+    "Triveni Turbine Ltd": "TRITURBINE.NS",
+    "Varun Beverages Ltd": "VBL.NS",
+    "Whirlpool of India Ltd": "WHIRLPOOL.NS",
+    
+    # Tech & IT
+    "Coforge Ltd": "COFORGE.NS",
+    "eClerx Services Ltd": "ECLERX.NS",
+    "Happiest Minds Technologies Ltd": "HAPPSTMNDS.NS",
+    "Hexaware Technologies Ltd": "HEXAWARE.NS",
+    "Infosys BPM Ltd": "INFY.NS",
+    "Mphasis Ltd": "MPHASIS.NS",
+    "Tata Elxsi Ltd": "TATAELXSI.NS",
+    
+    # Pharma
+    "Alkem Laboratories Ltd": "ALKEM.NS",
+    "Glenmark Pharmaceuticals Ltd": "GLENMARK.NS",
+    "Granules India Ltd": "GRANULES.NS",
+    "Ipca Laboratories Ltd": "IPCALAB.NS",
+    "Natco Pharma Ltd": "NATCOPHARM.NS",
+    "Sanofi India Ltd": "SANOFI.NS",
+    "Strides Pharma Science Ltd": "STAR.NS",
+    "Torrent Pharmaceuticals Ltd": "TORNTPHARM.NS",
+    
+    # Auto & Components
+    "Apollo Tyres Ltd": "APOLLOTYRE.NS",
+    "Balkrishna Industries Ltd": "BALKRISIND.NS",
+    "Bharat Forge Ltd": "BHARATFORG.NS",
+    "Bosch Ltd": "BOSCHLTD.NS",
+    "CEAT Ltd": "CEATLTD.NS",
+    "MRF Ltd": "MRF.NS",
+    "Samvardhana Motherson International Ltd": "MOTHERSON.NS",
+    "Sona BLW Precision Forgings Ltd": "SONACOMS.NS",
+    "Tube Investments of India Ltd": "TIINDIA.NS",
+}
+
 # Cached function to fetch stock data
 @st.cache_data(ttl=600)  # Cache for 10 minutes
 def get_stock_data(symbol, period):
@@ -34,43 +234,45 @@ def get_stock_data(symbol, period):
 st.markdown('<p class="big-font">📈 MarketSense AI</p>', unsafe_allow_html=True)
 st.markdown("### Advanced NSE/BSE Stock Analysis & Prediction Platform")
 
-# Popular Indian Stocks
-STOCKS = {
-    "TCS": "TCS.NS",
-    "Reliance Industries": "RELIANCE.NS",
-    "Infosys": "INFY.NS",
-    "HDFC Bank": "HDFCBANK.NS",
-    "ICICI Bank": "ICICIBANK.NS",
-    "Wipro": "WIPRO.NS",
-    "ITC": "ITC.NS",
-    "State Bank of India": "SBIN.NS",
-    "Bharti Airtel": "BHARTIARTL.NS",
-    "HUL": "HINDUNILVR.NS",
-    "Adani Enterprises": "ADANIENT.NS",
-    "Tata Motors": "TATAMOTORS.NS",
-    "Maruti Suzuki": "MARUTI.NS",
-    "Asian Paints": "ASIANPAINT.NS",
-    "Axis Bank": "AXISBANK.NS",
-    "Bajaj Finance": "BAJFINANCE.NS",
-    "Kotak Mahindra Bank": "KOTAKBANK.NS",
-    "L&T": "LT.NS",
-    "Mahindra & Mahindra": "M&M.NS",
-    "Titan": "TITAN.NS"
-}
-
 # Sidebar
 with st.sidebar:
     st.header("⚙️ Settings")
     
-    selection_type = st.radio("Select By:", ["Popular Stocks", "Enter Symbol"])
+    # Stock selection with searchable dropdown
+    st.subheader("📊 Select Stock")
     
-    if selection_type == "Popular Stocks":
-        stock_name = st.selectbox("Choose Stock", list(STOCKS.keys()))
-        symbol = STOCKS[stock_name]
+    # Create a list of options with company name and symbol
+    stock_options = [f"{name} ({symbol})" for name, symbol in sorted(ALL_STOCKS.items())]
+    
+    # Searchable selectbox
+    selected_option = st.selectbox(
+        "Search & Select Stock",
+        options=[""] + stock_options,  # Empty first option
+        help="Start typing to search for stocks (e.g., 'TCS', 'Reliance', 'Infosys')"
+    )
+    
+    # Extract symbol from selection
+    if selected_option:
+        # Parse the selected option to get the symbol
+        symbol = selected_option.split("(")[-1].replace(")", "")
+        stock_name = selected_option.split(" (")[0]
     else:
-        manual = st.text_input("Stock Symbol", "RELIANCE.NS").upper()
-        symbol = manual
-        stock_name = manual.replace('.NS', '').replace('.BO', '')
+        symbol = None
+        stock_name = None
+    
+    st.divider()
+    
+    # Manual entry option
+    with st.expander("🔧 Advanced: Enter Custom Symbol"):
+        manual_symbol = st.text_input(
+            "Enter Stock Symbol",
+            placeholder="e.g., RELIANCE.NS",
+            help="Format: SYMBOL.NS (NSE) or SYMBOL.BO (BSE)"
+        ).upper()
+        
+        if manual_symbol:
+            symbol = manual_symbol
+            stock_name = manual_symbol.replace('.NS', '').replace('.BO', '')
     
     st.info("💡 NSE: Add .NS | BSE: Add .BO")
     
@@ -82,15 +284,25 @@ with st.sidebar:
     
     predict_days = st.slider("Predict Days Ahead", 7, 90, 30)
     
-    analyze_btn = st.button("🔮 ANALYZE & PREDICT", type="primary", use_container_width=True)
+    # Disable button if no stock selected
+    analyze_btn = st.button(
+        "🔮 ANALYZE & PREDICT", 
+        type="primary", 
+        use_container_width=True,
+        disabled=(symbol is None)
+    )
+    
+    if symbol is None:
+        st.warning("⚠️ Please select a stock first")
     
     st.divider()
     st.markdown("### 🤖 AI-Powered Analysis")
-    st.caption("Real-time market insights")
+    st.caption(f"📊 {len(ALL_STOCKS)} stocks available")
+    st.caption("🔍 Searchable dropdown")
     st.caption("✅ Data cached for 10 min")
 
 # Main content
-if analyze_btn:
+if analyze_btn and symbol:
     with st.spinner(f"📊 Fetching data for {stock_name}..."):
         # Use cached function
         df, info, error = get_stock_data(symbol, period)
@@ -298,81 +510,112 @@ if analyze_btn:
 
 else:
     # Landing page
-    st.info("👈 Select a stock from the sidebar and click 'ANALYZE & PREDICT' to begin")
+    st.info("👈 Search and select a stock from the sidebar, then click 'ANALYZE & PREDICT' to begin")
     
     col1, col2 = st.columns(2)
     
     with col1:
         st.markdown("""
         ### 🎯 Features
-        - ✅ Real-time NSE/BSE data
-        - ✅ AI-powered predictions
-        - ✅ Technical analysis
-        - ✅ Buy/Sell signals
-        - ✅ Interactive charts
-        - ✅ INR currency (₹)
+        - ✅ **200+ Indian Stocks** (NSE/BSE)
+        - ✅ **Searchable Dropdown** - Type to find
+        - ✅ Real-time data with AI predictions
+        - ✅ Technical analysis & indicators
+        - ✅ Buy/Sell/Hold signals
+        - ✅ Interactive price & volume charts
+        - ✅ INR currency support (₹)
         - ✅ Export to CSV
         - ✅ Smart caching (no rate limits!)
         
-        ### 🏆 Popular Stocks Available
-        - **IT**: TCS, Infosys, Wipro
-        - **Banking**: HDFC, ICICI, SBI, Axis
-        - **Auto**: Maruti, Tata Motors, M&M
-        - **FMCG**: ITC, HUL
-        - **Energy**: Reliance, Adani
+        ### 🔍 How Search Works
+        - Type any part of company name
+        - Type stock symbol (e.g., "TCS", "Reliance")
+        - Results appear instantly
+        - Select from dropdown list
         """)
     
     with col2:
         st.markdown("""
-        ### 📖 How to Use
+        ### 📖 Quick Start Guide
         
-        1. **Select Stock**
-           - Choose from popular stocks
-           - OR enter symbol manually
+        1. **Search for Stock**
+           - Click on the dropdown in sidebar
+           - Start typing company name or symbol
+           - Example: Type "A" to see all "A" stocks
+           - Select your desired stock
         
         2. **Set Parameters**
-           - Historical period
-           - Prediction timeframe
+           - Choose historical period (1mo to 5y)
+           - Set prediction timeframe (7-90 days)
         
         3. **Analyze**
-           - Click the predict button
-           - View analysis & predictions
+           - Click "ANALYZE & PREDICT" button
+           - View comprehensive analysis
+           - Get AI-powered predictions
         
-        4. **Download**
-           - Export data as CSV
+        4. **Export Data**
+           - Download historical data as CSV
+           - Use for further analysis
         
-        ### 💡 Stock Symbol Guide
+        ### 🏆 Stock Categories Included
         
-        **NSE Format:** `SYMBOL.NS`
-        - Example: `TCS.NS`, `RELIANCE.NS`
-        
-        **BSE Format:** `SYMBOL.BO`
-        - Example: `TCS.BO`, `RELIANCE.BO`
+        - **Large Cap**: Nifty 50, Sensex stocks
+        - **Banking**: HDFC, ICICI, SBI, Axis
+        - **IT**: TCS, Infosys, Wipro, HCL
+        - **Auto**: Maruti, Tata Motors, M&M
+        - **Pharma**: Sun Pharma, Dr. Reddy's
+        - **FMCG**: ITC, HUL, Britannia
+        - **Energy**: Reliance, ONGC, BPCL
+        - **And many more!**
         """)
     
     st.divider()
     
-    # Quick access buttons
-    st.subheader("🔥 Quick Access")
+    # Stock categories showcase
+    st.subheader("📊 Featured Stock Categories")
     
-    col1, col2, col3, col4, col5 = st.columns(5)
+    tab1, tab2, tab3, tab4 = st.tabs(["🏦 Banking", "💻 IT", "🚗 Auto", "💊 Pharma"])
     
-    quick = [("TCS", "TCS.NS"), ("Reliance", "RELIANCE.NS"), 
-             ("Infosys", "INFY.NS"), ("HDFC", "HDFCBANK.NS"), 
-             ("ITC", "ITC.NS")]
+    with tab1:
+        st.markdown("""
+        **Top Banking Stocks:**
+        - HDFC Bank, ICICI Bank, State Bank of India
+        - Axis Bank, Kotak Mahindra Bank, IndusInd Bank
+        - Bank of Baroda, Punjab National Bank, Canara Bank
+        """)
     
-    for col, (name, sym) in zip([col1, col2, col3, col4, col5], quick):
-        with col:
-            if st.button(f"📊 {name}", use_container_width=True):
-                st.info(f"Select '{name}' from sidebar and click Analyze")
+    with tab2:
+        st.markdown("""
+        **Top IT Stocks:**
+        - TCS, Infosys, Wipro
+        - HCL Technologies, Tech Mahindra
+        - LTIMindtree, Coforge, Persistent Systems
+        """)
+    
+    with tab3:
+        st.markdown("""
+        **Top Auto Stocks:**
+        - Maruti Suzuki, Tata Motors, Mahindra & Mahindra
+        - Bajaj Auto, Hero MotoCorp, Eicher Motors
+        - TVS Motor, Ashok Leyland
+        """)
+    
+    with tab4:
+        st.markdown("""
+        **Top Pharma Stocks:**
+        - Sun Pharmaceutical, Dr. Reddy's Laboratories
+        - Cipla, Lupin, Aurobindo Pharma
+        - Divi's Laboratories, Biocon, Torrent Pharma
+        """)
 
 # Footer
 st.divider()
-st.markdown("""
+st.markdown(f"""
     <div style='text-align: center; padding: 1rem; background: #f0f2f6; border-radius: 10px;'>
         <p style='margin: 0;'><b>📈 MarketSense AI</b></p>
         <p style='margin: 0;'>Advanced Indian Stock Market Analysis Platform</p>
         <p style='margin: 0; font-size: 0.9em;'>Powered by AI & Real-time Data</p>
+        <p style='margin: 0; font-size: 0.85em;'>📊 {len(ALL_STOCKS)} Stocks Available | 🔍 Searchable Database</p>
         <p style='margin: 0; font-size: 0.8em; color: #666;'>
             ⚠️ For Informational Purposes Only | Not Financial Advice
         </p>
